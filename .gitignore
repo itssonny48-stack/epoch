@@ -1,0 +1,10 @@
+# Maven build output
+/target/
+
+# Eclipse personal settings
+/.settings/
+/.classpath
+/.project
+
+# Windows junk
+Thumbs.db
