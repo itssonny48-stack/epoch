@@ -2,6 +2,8 @@ package com.sonnym.epoch;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -58,10 +60,33 @@ public class WorldTest {
 		World blankWorld = new World();
 		assertEquals(0, blankWorld.getCurrentYear());
 	}
-	
+
 	@Test
-	void prints() {
-		System.out.println(world.getSettlements().toString());
+	void seedIsStored() {
+		assertEquals(1, world.getSeed());
+		World worldSeedTwenty = new World(20);
+		assertEquals(20, worldSeedTwenty.getSeed());
 	}
 
+	@Test
+	void sameSeedSameOutput() {
+		World worldA = new World(21);
+		World worldB = new World(21);
+		for (int i = 0; i < 10; i++) {
+			assertEquals(worldA.nextInt(100), worldB.nextInt(100));
+		}
+	}
+
+	@Test
+	void differentSeedDifferentOutput() {
+		World worldA = new World(2);
+		World worldB = new World(1);
+		boolean foundDifference = false;
+		for (int i = 0; i < 10; i++) {
+			if (worldA.nextInt(100) != worldB.nextInt(100))
+				foundDifference = true;
+		}
+		assertTrue(foundDifference);
+	}
+	
 }
