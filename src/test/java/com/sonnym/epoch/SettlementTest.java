@@ -13,19 +13,19 @@ import com.sonnym.epoch.model.Person;
 import com.sonnym.epoch.model.Settlement;
 
 public class SettlementTest {
-	
+
 	private Person person1;
 	private Settlement settlement1;
-	
+
 	@BeforeEach
 	void setUp() {
 		person1 = new Person(1, 0, "sonny", "mooney");
 		settlement1 = new Settlement("minetown");
 	}
-	
+
 	@Test
 	void newPopulationIsZero() {
-		
+
 		int population = settlement1.getPopulation();
 		assertEquals(0, population);// checks if a new settlement starts at 0
 	}// other values were also tested
@@ -54,10 +54,10 @@ public class SettlementTest {
 		boolean removed = settlement1.removePerson(person2);
 		assertFalse(removed);
 	}// tested with true
-	
-	@Test 
+
+	@Test
 	void averageAgeWorks() {
-		assertEquals(0,settlement1.getAverageAge());
+		assertEquals(0, settlement1.getAverageAge());// checks it works on a blank settlement
 		Person person2 = new Person(2, 15, "person", "2");
 		Person person3 = new Person(3, 20, "person", "3");
 		Person person4 = new Person(4, 30, "person", "4");
@@ -67,8 +67,8 @@ public class SettlementTest {
 		settlement1.addPerson(person3);
 		settlement1.addPerson(person4);
 		settlement1.addPerson(person5);
-		assertEquals(23.2,settlement1.getAverageAge(),0.001);
-		
+		assertEquals(23.2, settlement1.getAverageAge(), 0.001);
+
 	}
 
 }
